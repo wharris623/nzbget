@@ -482,7 +482,7 @@ bool UnpackController::JoinFile(const char* fragBaseName)
 
 	int correctedCount = count - (min == 0 ? 1 : 0);
 	if ((min > 1) || correctedCount != max ||
-		((difSizeMin != correctedCount || difSizeMin > max) &&
+		(difSizeMin != correctedCount &&
 		 m_postInfo->GetNzbInfo()->GetParStatus() != NzbInfo::psSuccess))
 	{
 		PrintMessage(Message::mkWarning, "Could not join splitted file %s: missing fragments detected", *destBaseName);

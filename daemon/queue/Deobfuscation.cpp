@@ -177,9 +177,6 @@ namespace Deobfuscation
 		if (distance == 0)
 			return ParsePRiVATEnzb(str);
 
-		if (distance > 0)
-			return str.substr(firstQuotPos, distance);
-
-		return str;
+		return str.substr(firstQuotPos, distance);
 	}
 }

@@ -396,7 +396,7 @@ class WildMask
 {
 public:
 	WildMask(const char* pattern, bool wantsPositions = false):
-		m_pattern(pattern), m_wantsPositions(wantsPositions) {}
+		m_pattern(pattern), m_wantsPositions(wantsPositions), m_wildCount(0) {}
 	bool Match(const char* text);
 	int GetMatchCount() { return m_wildCount; }
 	int GetMatchStart(int index) { return m_wildStart[index]; }
@@ -490,10 +490,10 @@ public:
 private:
 #if defined(WIN32) && !defined(_WIN64)
 	// VC++ in 32 bit mode can not "alignas(16)" dynamically allocated objects
-	alignas(8) uint32_t m_state[4 * 5 + 8]; // = YEncode::crc_state
+	alignas(8) uint32_t m_state[4 * 5 + 8] {}; // = YEncode::crc_state
 	void* State() { void* p = &m_state; size_t s = sizeof(m_state); return std::align(16, 4 * 5, p, s); }
 #else
-	alignas(16) uint32_t m_state[4 * 5]; // = YEncode::crc_state
+	alignas(16) uint32_t m_state[4 * 5] {}; // = YEncode::crc_state
 	void* State() { return &m_state; }
 #endif
 };
